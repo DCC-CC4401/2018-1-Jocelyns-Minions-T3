@@ -4,34 +4,38 @@
     <meta charset="UTF-8">
     <title>Test</title>
 
+
 </head>
 <body>
 {% load bootstrap4 %}
 {% bootstrap_css %}
+{% load static %}
     <header>
-        <div class="container-fluid  bg-info ">
-            <div class="navbar navbar-info bg-info justify-content-between ">
-                <a class="navbar-brand text-white" href="#">CEI</a>      <!--poner foto aqui-->
-                <div class="row">
-                    <!--poner icono de correo aca-->
-                    <div class="col col-sm">
-                        <div class="row">
-                            <div class="col-sm">
-                                USER
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                rut
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                MAIL
-                            </div>
-                        </div>
-                    </div>
-                    <!--poner icono de usuario aca-->
+        <div class="container-fluid  bg-light ">
+            <div class="navbar navbar-expand-xl navbar-light bg-light justify-content-between">
+                <a class="navbar-brand text-white" href="#">
+                    <img src="{% static "img/cei_logo.png" %}" alt="logo" width="70" height="70"/> <!--poner foto aqui-->
+                </a>
+                <div class="row align-items-center">
+                      <b class="nav-item">
+                          <img src="{% static "img/mail.png" %}" alt="mail" width="40" height="30"/>
+                      </b>
+                      <div class="row">
+                          <div class="col-md">
+                              USER
+                          </div>
+                          <div class="w-100"></div>
+                          <div class="col-md">
+                              RUT
+                          </div>
+                          <div class="w-100"></div>
+                          <div class="col-md">
+                              MAIL
+                          </div>
+                      </div>
+                      <c class="nav-item">
+                          <img src="{% static "img/user.png" %}" alt="user" width="70" height="60"/>
+                      </c>
                 </div>
             </div>
         </div>
