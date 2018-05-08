@@ -1,0 +1,52 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container bs-docs-container">
+        <div class="row pt-5 align-items-end">
+            <div class="col-8">
+                <h1>Objeto <span class="badge badge-success">Disponible</span></h1>
+            </div>
+            <div class="col-4">
+                <h4>Solicitar reserva</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 pt-4 pr-4">
+                <div class="row">
+                    <div class="col">
+                        <img src="{% static "img/img.png" %}" alt="objeto" style="width:100%"/>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <div class="col">
+                        <div style="width:100%;border-style:dashed">
+                            Poner descripcion aqui
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 pt-4 ">
+                <div class="row">
+                    <div class="col">
+                         <div style="height:350px;border-style:solid">
+                             <h4>Fecha</h4>
+                             <input class="form-control" type="date" id="Fecha">
+                         </div>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <div class="col">
+                        <h4>Ultimas Reservas</h4>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col pt-4">
+                        <div style="height:200px;border-style:solid">
+                            Poner lista de fechas aca
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
