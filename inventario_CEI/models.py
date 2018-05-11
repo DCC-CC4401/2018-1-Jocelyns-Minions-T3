@@ -43,7 +43,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name='Correo Electrónico',
         max_length=255,
         primary_key=True,
     )
@@ -79,6 +79,32 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.get_nombre_simple()
+
+    def has_perm(self, perm, obj=None):
+        '''
+        Requerido para poder usar este modelo en Django Admin.
+        Verifica si el usario posee el permiso <perm>.
+        :param perm: Permiso a testear.
+        :param obj:
+        :return: Retorna True si el usuario tiene el permiso.
+        '''
+        return True
+
+    def has_module_perms(self, app_label):
+        '''
+        Requerido para poder usar este modelo en Django Admin.
+        :param app_label: Nombre de la aplicacion para la que se testean los permisos.
+        :return: Retorna True si el usuario tiene permisos para ver la aplicacion <app_label>.
+        '''
+        return True
+
+    @property
+    def is_staff(self):
+        '''
+        Requerido para poder usar este modelo en Django Admin.
+        :return: Retorna True si es super usuario (i.e si is_admin==True)
+        '''
+        return self.is_admin
 
 
 class Articulo(models.Model):
