@@ -47,15 +47,15 @@ class User(AbstractBaseUser):
         max_length=255,
         primary_key=True,
     )
-    rut = models.IntegerField(unique=True)
+    rut = models.IntegerField(unique=True, verbose_name="RUT")
     '''
     Como tanto email y rut son unique (email es unique pues es primary key), no es necesario
     especificar un unique_together('rut','email').
     '''
-    nombres = models.CharField(max_length=200)
-    apellidos = models.CharField(max_length=200)
-    puede_reservar = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    nombres = models.CharField(max_length=200, verbose_name="Nombres")
+    apellidos = models.CharField(max_length=200, verbose_name="Apellidos")
+    puede_reservar = models.BooleanField(default=True, verbose_name="Habilitado para Reservar")
+    is_admin = models.BooleanField(default=False, verbose_name="Es Administrador")
 
     objects = UserManager()
 
