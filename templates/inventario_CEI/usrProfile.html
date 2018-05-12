@@ -1,0 +1,103 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+#centrado {
+
+    display: flex;
+    height:150px;
+    align-items: center; /* horizontal */
+    justify-content: center; /* vertical */
+    border-style:solid;
+    border-color: dimgray;
+}
+
+#centrado2 {
+
+     display: flex;
+    height:150px;
+    align-items: center; /* horizontal */
+    justify-content: center; /* vertical */
+    border-style:solid;
+    border-color: dimgray;
+    border-style: groove;
+}
+</style>
+
+
+
+
+    <div class="container bs-docs-container">
+
+<!-- BOTONES1: ARTICULO ESPACIO-->
+        <div class="row pt-3 m-4 align-items-end">
+
+            <div class="col-6 pr-4"  >
+                <div class='inner rounded' id="centrado" >
+                    <h1>Reserva Tu Espacio</h1>
+                </div>
+            </div>
+            <div class="col-6 pl-4"  >
+                <div class='inner rounded' id="centrado" >
+                    <h1>Pide Tu Artículo</h1>
+                </div>
+            </div>
+        </div>
+
+
+<!-- BOTONES2: RESERVA PRESTRAMO -->
+         <div class="row pt-3 pl-4 m-4 align-items-end">
+             <ul class="nav nav-pills">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Reservas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Prestamos</a>
+                  </li>
+             </ul>
+     </div>
+
+
+<!-- CUADRO1: LISTA  ARTICULO -->
+         <div class="row pt-3 pl-4 m-4 align-items-end">
+
+             <div class="col-5 pt-4 pr-4 ">
+              <table class="table table-hover">
+               <thead>
+                <tr> </thead>
+               <tbody>
+                <tr>
+                  <td> <label><input type="checkbox" name="1"> </label></td>
+                  <td> Quincho</td>
+                  <td> <span class="badge badge-success">Aceptado</span></td>
+                </tr>
+                <tr>
+                  <td> <label><input type="checkbox" name="2"> </label></td>
+                  <td>Parlantes</td>
+                  <td><span class="badge badge-light">En Proceso</span></td>
+                </tr>
+                <tr>
+                  <td> <input type="checkbox" name="3"> </td>
+                  <td>Sala 1</td>
+                    <td> <span class="badge badge-danger">Rechazado</span></td>
+                </tr>
+                </tbody>
+              </table>
+                  </div>
+
+
+             <div class="col-6 pt-4 ">
+                <div class=" rounded" id='centrado2' style="height:200px;border-style:solid">
+                            .........
+                        </div>
+              </div>
+                   </div>
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

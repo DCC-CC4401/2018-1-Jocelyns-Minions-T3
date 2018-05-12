@@ -5,3 +5,9 @@ from django.http import HttpResponse
 # Create your views here.
 def base(request):
     return render(request,'inventario_CEI/base.html')
+
+def artProfile(request):
+    return render(request, 'inventario_CEI/artProfile.html')
+
+def usrProfile(request):
+    return render(request, 'inventario_CEI/usrProfile.html')
