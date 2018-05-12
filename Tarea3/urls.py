@@ -18,6 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('',include('inventario_CEI.urls')),
-    path('',include('inventario_CEI.urls')),
     path('admin/', admin.site.urls),
 ]

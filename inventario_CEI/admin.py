@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from inventario_CEI.models import User
+from inventario_CEI.models import User, Articulo, Prestamo_articulo
 
 
 class UserCreationForm(forms.ModelForm):
@@ -81,3 +81,5 @@ class UserAdmin(BaseUserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
+admin.site.register(Articulo)
+admin.site.register(Prestamo_articulo)
