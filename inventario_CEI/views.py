@@ -8,3 +8,6 @@ def base(request):
 
 def artProfile(request):
     return render(request, 'inventario_CEI/artProfile.html')
+
+def usrProfile(request):
+    return render(request, 'inventario_CEI/usrProfile.html')
