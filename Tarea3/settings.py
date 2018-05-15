@@ -54,6 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'Tarea3.urls'
 
 AUTH_USER_MODEL = 'inventario_CEI.User'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

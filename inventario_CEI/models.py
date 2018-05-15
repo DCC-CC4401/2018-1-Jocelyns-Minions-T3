@@ -77,6 +77,31 @@ class User(AbstractBaseUser):
         '''
         return self.nombres+" "+self.apellidos
 
+    def get_digito_verificador(self):
+        '''
+        Calcula y retorna el digito verificador del RUT del usuario.
+        :return: Digito verificador de RUT del usuario.
+        '''
+        rut = int(self.rut)
+        s = 0
+        f = 2
+        while rut != 0:
+            digito = int(rut % 10)
+            rut = int(rut / 10)
+            s += f * digito
+            if f == 7:
+                f = 2
+            else:
+                f += 1
+
+        dv_raw = 11 - (s % 11)
+        if dv_raw == 11:
+            return 0
+        elif dv_raw == 10:
+            return 'K'
+        else:
+            return dv_raw
+
     def __str__(self):
         return self.get_nombre_simple()
 

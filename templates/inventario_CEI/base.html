@@ -22,13 +22,13 @@
                     </div>
                     <div class="col-lg">
                         <div class="row">
-                            USER
+                            {{ user }}
                         </div>
                         <div class="row">
-                            RUT
+                            {{ user.rut }}-{{ user.get_digito_verificador }}
                         </div>
                         <div class="row">
-                            MAIL
+                            {{ user.email }}
                         </div>
                     </div>
                     <div class="col"-sm>
