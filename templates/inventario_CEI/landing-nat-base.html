@@ -1,0 +1,71 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container bs-docs-container">
+        <div class="row  m-4 justify-content-around" style="height:100px">
+            <div class="col-3 align-self-center ">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success text-white">Artículos</button>
+                    <button type="button" class="btn btn-light">Espacios</button>
+                </div>
+            </div>
+        </div>
+        <!--insertar resultado de busqueda-->
+        {% block search %}
+        {% endblock %}
+        <h4>Top Pedidos</h4>
+            <div class="row pt-2 border-top ">
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="#">
+                            <img src="{% static "img/img.png" %}" alt="Objeto 1" style="width:100%">
+                            <div class="caption">
+                                Objeto 1
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="#">
+                            <img src="{% static "img/img.png" %}" alt="Objeto 2" style="width:100%">
+                            <div class="caption">
+                                Objeto 2
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="#">
+                            <img src="{% static "img/img.png" %}" alt="Objeto 3" style="width:100%">
+                            <div class="caption">
+                                Objeto 3
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="#">
+                            <img src="{% static "img/img.png" %}" alt="Objeto 4" style="width:100%">
+                            <div class="caption">
+                                Objeto 4
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="#">
+                            <img src="{% static "img/img.png" %}" alt="Objeto 5" style="width:100%">
+                            <div class="caption">
+                                Objeto 4
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

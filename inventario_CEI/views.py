@@ -8,3 +8,6 @@ def base(request):
 
 def artProfile(request):
     return render(request, 'inventario_CEI/artProfile.html')
+
+def landingNat(request):
+    return render(request,'inventario_CEI/landing-nat-advanced-search.html')
