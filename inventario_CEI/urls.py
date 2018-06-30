@@ -6,5 +6,6 @@ urlpatterns=[
     #path('',views.base,name='base'),
     #path('',views.artProfile,name='artProfile'),
     #path('',views.usrProfile,name='usrProfile'),
-    path('',views.landingNat,name='landingNat'),
+    #path('',views.landingNat,name='landingNat'),
+    path('',views.landingAdmin,name='landingAdmin')
 ]

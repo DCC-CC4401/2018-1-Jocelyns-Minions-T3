@@ -1,0 +1,70 @@
+{% extends 'inventario_CEI/landingAdminBase.html' %}
+{% load static %}
+{% block lists %}
+    <div class="row pt-5">
+        <div class="col-1 m-0">
+            <div class="row pb-5 ">
+                <span class="fas fa-user" style="font-size:60px;color:#28a745"></span>
+            </div>
+            <div class="row pb-5 pt-2">
+                <span class="fas fa-cart-plus" style="font-size:50px;"></span>
+            </div>
+            <div class="row pb-5 pt-2">
+                <span class="far fa-clock" style="font-size:60px;"></span>
+            </div>
+        </div>
+        <div class="col-11">
+            <table class="table table-striped">   <!--Tabla-->
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Rut</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th><span class="fas fa-plus-circle" style="color:#28a745"></span></th>
+                    </tr>
+                </thead>
+                <tbody> <!--Cuerpo de la tabla, colores= verde:#28a745, rojo :#dc3545-->
+                    <tr>
+                        <td>1</td>
+                        <td>Jane</td>
+                        <td>Doe</td>
+                        <td>12.345.678-9</td>
+                        <td>jane@doe.com</td>
+                        <td style="color:#28a745">SomeEstate</td>
+                        <td>
+                            <span class="fas fa-pencil-alt"></span>
+                            <span class="fas fa-trash-alt"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>98.765.432-1</td>
+                        <td>john@doe.com</td>
+                        <td style="color:#dc3545">SomeEstate</td>
+                        <td>
+                            <span class="fas fa-pencil-alt"></span>
+                            <span class="fas fa-trash-alt"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Some</td>
+                        <td>Dude</td>
+                        <td>12.345.432-1</td>
+                        <td>some@dude.com</td>
+                        <td style="color:#dc3545">SomeEstate</td>
+                        <td>
+                            <span class="fas fa-pencil-alt"></span>
+                            <span class="fas fa-trash-alt"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

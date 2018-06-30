@@ -1,0 +1,107 @@
+{% extends 'inventario_CEI/landingAdminBase.html' %}
+{% load static %}
+{% block lists %}
+    <div class="row pt-5">
+        <div class="col-1 m-0">
+            <div class="row pb-5 ">
+                <span class="fas fa-user" style="font-size:60px;"></span>
+            </div>
+            <div class="row pb-5 pt-2">
+                <span class="fas fa-cart-plus" style="font-size:50px;"></span>
+            </div>
+            <div class="row pb-5 pt-2">
+                <span class="far fa-clock" style="font-size:60px;color:#28a745"></span>
+            </div>
+        </div>
+        <div class="col-11"><!--calendario aca-->
+            <div id="calendar"></div>
+        </div>
+
+    </div>
+    <div class="row justify-content-between">
+        <form style="width: 49%">
+        <div class="col"> <!--lista de pendientes-->
+
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <h4>Pendientes</h4>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                        <button type="submit" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+                    </div>
+                </div>
+                <div class="row border-top"><!--tabla de pendentes-->
+                    <table class="table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>ID</td>
+                                <td>Artículo</td>
+                                <td>Usuario</td>
+                                <td>Fecha Préstamo</td>
+                                <td>Fecha Solicitud</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <input type="checkbox"></td>
+                                <td>34</td>
+                                <td>Quicho</td>
+                                <td>Jocelyn Simmonds</td>
+                                <td>27/04/2018 13:00</td>
+                                <td>24/04/2018 12:45</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+        </div>
+        </form>
+        <form style="width: 49%">
+            <div class="col"> <!--lista de pendientes-->
+
+                    <div class="row justify-content-between">
+                        <div class="col-3">
+                            <h4>Pedidos</h4>
+                        </div>
+                        <div class="col-8">
+                            <a href="#">Todos</a>
+                            <a href="#">Vigentes</a>
+                            <a href="#">Caducados</a>
+                            <a href="#">Perdidos</a>
+                            <button type="submit" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                            <button type="submit" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+                        </div>
+                    </div>
+                    <div class="row border-top"><!--tabla de pendentes-->
+                        <table class="table-bordered" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>ID</td>
+                                    <td>Artículo</td>
+                                    <td>Usuario</td>
+                                    <td>Fecha Préstamo</td>
+                                    <td>Estado</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <input type="checkbox"></td>
+                                    <td>34</td>
+                                    <td>Quicho</td>
+                                    <td>Jocelyn Simmonds</td>
+                                    <td>27/04/2018 13:00</td>
+                                    <td>Pendiente</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+            </div>
+            </form>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container bs-docs-container ">
+        <h3>Administrador</h3>
+        <div class="row border-top justify-content-center">
+            <form class="form-inline pt-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="text" name="text" >
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                </div>
+            </form>
+
+        </div>
+        {% block lists %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

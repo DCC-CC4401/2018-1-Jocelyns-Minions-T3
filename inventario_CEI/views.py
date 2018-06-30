@@ -9,5 +9,11 @@ def base(request):
 def artProfile(request):
     return render(request, 'inventario_CEI/artProfile.html')
 
+def usrProfile(request):
+    return render(request, 'inventario_CEI/usrProfile.html')
+
 def landingNat(request):
-    return render(request,'inventario_CEI/landing-nat-place-search.html')
+    return render(request,'inventario_CEI/landing-nat-advanced-search.html')
+
+def landingAdmin(request):
+    return render(request, 'inventario_CEI/landingAdminCalendar.html')
