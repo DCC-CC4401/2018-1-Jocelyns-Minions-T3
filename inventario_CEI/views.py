@@ -16,4 +16,11 @@ def landingNat(request):
     return render(request,'inventario_CEI/landing-nat-advanced-search.html')
 
 def landingAdmin(request):
+    return render(request, 'inventario_CEI/landingAdminUsers.html')
+
+def landingAdminCalendar(request):
     return render(request, 'inventario_CEI/landingAdminCalendar.html')
+
+
+def landingAdminArtSpaces(request):
+    return render(request, 'inventario_CEI/landingAdminArtSpaces.html')
