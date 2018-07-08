@@ -8,12 +8,20 @@
         <option name="manageScript" value="$MODULE_DIR$/manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
         <option name="doNotUseTestRunner" value="false" />
+<<<<<<< HEAD
+=======
+        <option name="trackFilePattern" value="migrations" />
+>>>>>>> develop
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.5 (TareaCero)" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.6 (2018-1-Jocelyns-Minions-T3-gpr)" jdkType="Python SDK" />
+>>>>>>> develop
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Tarea3.iml" filepath="$PROJECT_DIR$/.idea/Tarea3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/2018-1-Jocelyns-Minions-T3.iml" filepath="$PROJECT_DIR$/.idea/2018-1-Jocelyns-Minions-T3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/2018-1-Jocelyns-Minions-T3-gpr.iml" filepath="$PROJECT_DIR$/.idea/2018-1-Jocelyns-Minions-T3-gpr.iml" />
     </modules>
   </component>
 </project>

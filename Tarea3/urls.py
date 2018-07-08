@@ -27,6 +27,9 @@ urlpatterns = [
     path('artProfile/',include('inventario_CEI.urls')),
     path('landingNat/',include('inventario_CEI.urls')),
     path('landingAdmin/', include('inventario_CEI.urls')),
+
+    path('',include('inventario_CEI.urls')),
+
     path('admin/', admin.site.urls),
     #path('',views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
     #url(r'^$', views.homepage, name="homepage"),
