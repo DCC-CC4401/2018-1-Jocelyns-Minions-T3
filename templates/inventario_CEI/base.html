@@ -1,9 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Test</title>
 
+    <link rel="stylesheet" href="{% static 'js/fullcalendar/fullcalendar.css' %}"/>
+    <script src="{% static 'js/fullcalendar/lib/jquery.min.js' %}"></script>
+    <script src="{% static 'js/fullcalendar/lib/moment.min.js' %}"></script>
+    <script src="{% static 'js/fullcalendar/fullcalendar.js' %}"></script>
+    <script src="{% static 'js/fullcalendar/locale/es.js' %}"></script>
+
+    <script>
+        $(function(){
+            $('#calendar').fullCalendar({
+                weekends: false,
+                defaultView: 'agendaWeek',
+                allDaySlot: false,
+                columnHeaderFormat: 'ddd',
+                minTime: "08:00:00",
+                maxTime: "19:00:00",
+                aspectRatio: 1.925,
+                footer:{left:'', center:'prev,next', right:''},
+                header:{left:'title',center:'',right:''},
+            })
+        });
+    </script>
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 </head>
 <body>
@@ -38,7 +65,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col"-sm>
+                    <div class="col-sm">
                         <img src="{% static "img/user.png" %}" alt="user" width="70" height="60"/>
                     </div>
                 </div>
