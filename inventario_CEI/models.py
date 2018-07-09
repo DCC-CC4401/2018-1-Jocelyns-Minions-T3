@@ -105,6 +105,10 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.get_nombre_simple()
 
+    @property
+    def get_permiso(self):
+        return self.puede_reservar
+
     def has_perm(self, perm, obj=None):
         '''
         Requerido para poder usar este modelo en Django Admin.
@@ -139,6 +143,15 @@ class Articulo(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField(max_length=1000, help_text='Ingrese una breve descripcion del articulo')
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, help_text="ID unica para este articulo")
+    image = models.ImageField(upload_to='templates/media/', blank=True)
+    ESTADO_ARTICULO = (
+       ('d', 'Disponible'),
+       ('o', 'Ocupado'),
+       ('rp','En reparacion'),
+       ('p', 'Perdido'),
+
+    )
+    estado = models.CharField(max_length=1, choices=ESTADO_ARTICULO, blank=True, default='d', help_text='Estado del articulo')
 
     class Meta:
         ordering = ["nombre"]
@@ -149,12 +162,16 @@ class Articulo(models.Model):
         """
         return self.nombre
 
-
     def get_absolute_url(self):
         """
         retorna la url para acceder a ver el detalle del articulo
         """
         return reverse('articulo-detalle', args=[str(self.id)])
+
+    @property
+    def get_estado(self):
+        dictionary = dict(self.ESTADO_ARTICULO)
+        return dictionary[self.estado]
 
 
 
@@ -164,14 +181,15 @@ class Prestamo_articulo(models.Model):
     """
     Modelo que representa un prestamo/solicitud de un articulo
     """
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, help_text="ID unica para este prestamo")
     usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    articulo = models.ForeignKey('Articulo', on_delete=models.SET_NULL, null=True, blank=True)
     #blank=True porque el campo no es requerido en el formulario
-    fecha_devolucion = models.DateField(null=True)
     fecha_inicio = models.DateField(null=True)
-
+    hora_inicio = models.TimeField(null=True)
+    fecha_devolucion = models.DateField(null=True)
+    hora_devolucion = models.TimeField(null=True)
+    fecha_hora_peticion= models.DateTimeField(auto_now=True)
+    articulo = models.ForeignKey('Articulo', on_delete=models.SET_NULL, null=True, blank=True)
     #@property  allows to access the computed value of combined_name like an attribute
     @property
     def is_overdue(self):
@@ -191,11 +209,28 @@ class Prestamo_articulo(models.Model):
     estado = models.CharField(max_length=1, choices=ESTADO_PRESTAMO, blank=True, default='p', help_text='Estado del prestamo')
 
     class Meta:
-        ordering = ["fecha_devolucion"]
+        ordering = ["fecha_hora_peticion"]
 
+    @property
+    def get_estado(self):
+        dictionary= dict(self.ESTADO_PRESTAMO)
+        return dictionary[self.estado]
+
+    @property
+    def get_name_articulo(self):
+        return str(self.articulo)
 
     def __str__(self):
         return '{0} ({1})'.format(self.id,self.articulo.nombre)
 
     def get_absolute_url(self):
         return reverse('prestamo-articulo-detalle', args=[str(self.id)])
+
+    @staticmethod
+    def borrar():
+        try:
+            item = Prestamo_articulo.objects.get(pk=primarykey)
+        except Prestamo_articulo.DoesNotExist:
+            return
+        if item.estado=='p':
+            item.delete()
