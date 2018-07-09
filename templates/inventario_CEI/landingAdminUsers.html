@@ -29,42 +29,29 @@
                     </tr>
                 </thead>
                 <tbody> <!--Cuerpo de la tabla, colores= verde:#28a745, rojo :#dc3545-->
+                {% for user in list_users %}
+
                     <tr>
-                        <td>1</td>
-                        <td>Jane</td>
-                        <td>Doe</td>
-                        <td>12.345.678-9</td>
-                        <td>jane@doe.com</td>
-                        <td style="color:#28a745">SomeEstate</td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.nombres }}</td>
+                        <td>{{ user.apellidos }}</td>
+                        <td> {{ user.rut }}</td>
+                        <td>{{ user.email }}</td>
+                        {% if  user.puede_reservar %}
+                             <td style="color:#28a745">Habilitado</td>
+                        {% else %}
+                             <td style="color:#dc3545">Deshabilitado</td>
+                        {% endif %}
+
                         <td>
                             <span class="fas fa-pencil-alt"></span>
                             <span class="fas fa-trash-alt"></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>98.765.432-1</td>
-                        <td>john@doe.com</td>
-                        <td style="color:#dc3545">SomeEstate</td>
-                        <td>
-                            <span class="fas fa-pencil-alt"></span>
-                            <span class="fas fa-trash-alt"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Some</td>
-                        <td>Dude</td>
-                        <td>12.345.432-1</td>
-                        <td>some@dude.com</td>
-                        <td style="color:#dc3545">SomeEstate</td>
-                        <td>
-                            <span class="fas fa-pencil-alt"></span>
-                            <span class="fas fa-trash-alt"></span>
-                        </td>
-                    </tr>
+
+                {% endfor %}
+
+
                 </tbody>
             </table>
         </div>

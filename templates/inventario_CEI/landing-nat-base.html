@@ -1,5 +1,10 @@
 {% extends 'inventario_CEI/base.html' %}
 {% load static %}
+{% load staticfiles %}
+
+<script src="{% static "js/jquery-1.11.1.js" %}"></script>
+<script src="{% static "js/rango-jquery.js" %}"></script>
+
 {% block content %}
     <div class="container bs-docs-container">
         <div class="row  m-4 justify-content-around" style="height:100px">
@@ -67,5 +72,14 @@
                 </div>
             </div>
     </div>
+
+    {% block javascript %}
+  <script>
+    $("#id_username").change(function () {
+      console.log( $(this).val() );
+    });
+  </script>
+{% endblock %}
+
 
 {% endblock %}

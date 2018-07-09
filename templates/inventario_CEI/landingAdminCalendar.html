@@ -46,13 +46,16 @@
                             </tr>
                         </thead>
                         <tbody>
+
+
                             <tr>
                                 <td> <input type="checkbox"></td>
                                 <td>34</td>
                                 <td>Quicho</td>
                                 <td>Jocelyn Simmonds</td>
                                 <td>27/04/2018 13:00</td>
-                                <td>24/04/2018 12:45</td>
+                                <td>prestamo</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -76,7 +79,7 @@
                             <button type="submit" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
                         </div>
                     </div>
-                    <div class="row border-top"><!--tabla de pendentes-->
+                    <div id="refresh-this-div" class="row border-top"><!--tabla de pendentes-->
                         <table class="table-bordered" style="width: 100%">
                             <thead>
                                 <tr>
@@ -89,21 +92,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {% for prestamo in list_prestamos %}
                                 <tr>
-                                    <td> <input type="checkbox"></td>
-                                    <td>34</td>
-                                    <td>Quicho</td>
-                                    <td>Jocelyn Simmonds</td>
-                                    <td>27/04/2018 13:00</td>
-                                    <td>Pendiente</td>
+                                    <td> <input type="checkbox"> </td>
+                                    <td> {{ prestamo.id }}</td>
+                                    <td>{{ prestamo.articulo.nombre }}</td>
+                                    <td>{{ prestamo.usuario.get_nombre_simple }}</td>
+                                    <td>{{ prestamo.fecha_inicio }}</td>
+                                    <td>{{ prestamo.get_estado_display }}</td>
+
+                                    <td>
+                                        <span class="fas fa-pencil-alt"></span>
+                                        <span class="fas fa-trash-alt"></span>
+                                    </td>
                                 </tr>
+                            {% endfor %}
+
+
                             </tbody>
                         </table>
                     </div>
 
             </div>
             </form>
-
 
     </div>
 {% endblock %}
