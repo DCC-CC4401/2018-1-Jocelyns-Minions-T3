@@ -2,6 +2,14 @@
 {% load static %}
 {% block content %}
 <style>
+.centrado{
+    display: flex;
+    height:150px;
+    align-items: center; /* horizontal */
+    justify-content: center; /* vertical */
+    border-style:solid;
+    border-color: dimgray;
+}
 #centrado {
 
     display: flex;
@@ -25,15 +33,13 @@
 </style>
 
 
-
-
     <div class="container bs-docs-container">
 
 <!-- BOTONES1: ARTICULO ESPACIO-->
         <div class="row pt-3 m-4 align-items-end">
 
             <div class="col-6 pr-4"  >
-                <div class='inner rounded' id="centrado" >
+                <div class='centrado' >
                     <h1>Reserva Tu Espacio</h1>
                 </div>
             </div>
@@ -66,21 +72,41 @@
                <thead>
                 <tr> </thead>
                <tbody>
-                <tr>
-                  <td> <label><input type="checkbox" name="1"> </label></td>
-                  <td> Quincho</td>
-                  <td> <span class="badge badge-success">Aceptado</span></td>
-                </tr>
-                <tr>
-                  <td> <label><input type="checkbox" name="2"> </label></td>
-                  <td>Parlantes</td>
-                  <td><span class="badge badge-light">En Proceso</span></td>
-                </tr>
-                <tr>
-                  <td> <input type="checkbox" name="3"> </td>
-                  <td>Sala 1</td>
-                    <td> <span class="badge badge-danger">Rechazado</span></td>
-                </tr>
+                {% if prestamos %}
+                <form method="post">{% csrf_token %}
+                    <input type="submit" value="Borrar Seleccionados">
+                    {% for prestamo in prestamos %}
+                    {% if prestamo.usuario == user %}
+                    {% if forloop.counter0 < 10 %}
+                    <tr>
+                        {% if prestamo.estado == 'p' %}
+                        <td> <label><input type="checkbox" name="check[]" value={{prestamo.id}}> </label></td>
+                        {% endif %}
+                        <td> {{prestamo.articulo}}</td>
+                        {% if articulos %}
+                        {% for articulo in articulos %}
+                        {% if articulo.id == prestamo.articulo.id %}
+                        <td> <li><a href="/articulos/{{articulo.id}}/">ver detalle {{articulo.nombre}}</a></li></td>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% if prestamo.estado == 'a' %}
+                        <td> <span class="badge badge-success"> {{prestamo.get_estado}} </span></td>
+                        {% elif prestamo.estado == 'p' %}
+                        <td><span class="badge badge-light">{{prestamo.get_estado}}</span></td>
+                        {% elif prestamo.estado == 'r' %}
+                        <td> <span class="badge badge-danger">{{prestamo.get_estado}}</span></td>
+                        {% elif prestamo.estado == 't' %}
+                        <td> <span class="badge badge-dark">{{prestamo.get_estado}}</span></td>
+                        {% elif prestamo.estado == 'c' %}
+                        <td><span class="badge badge-warning">{{prestamo.get_estado}}</span></td>
+                    </tr>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                </form>
+                {% endif %}
                 </tbody>
               </table>
                   </div>
@@ -89,15 +115,9 @@
              <div class="col-6 pt-4 ">
                 <div class=" rounded" id='centrado2' style="height:200px;border-style:solid">
                             .........
-                        </div>
+                </div>
               </div>
-                   </div>
-
-
-
-
-
-
+         </div>
 
     </div>
 {% endblock %}

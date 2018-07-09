@@ -22,13 +22,20 @@
                     </div>
                     <div class="col-lg">
                         <div class="row">
-                            {{ user }}
+                            <h4>{{ user }}</h4>
                         </div>
                         <div class="row">
                             {{ user.rut }}-{{ user.get_digito_verificador }}
                         </div>
                         <div class="row">
                             {{ user.email }}
+                        </div>
+                        <div class="row">
+                            {% if user.get_permiso %}
+                            <span class="badge badge-success"><h8>Habilitado</h8></span>
+                            {% else %}
+                            <span class="badge badge-danger"><h8>No Habilitado</h8></span>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col"-sm>
