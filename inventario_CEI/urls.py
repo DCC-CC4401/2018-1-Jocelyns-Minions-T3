@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
@@ -14,4 +15,7 @@ urlpatterns = [
     path('landingUser/',views.landingNat, name='landingUser'),
     path('landingUser/Asearch/',views.landingNatSearch, name='landingUser'),
     path('landingUserPlaceSearch/', views.landingUserPlaceSearch, name='UserPlaceSearch'),
+    path('modificarPedidos', views.modificarPedidos, name='modificarPedidos'),
+    path('modificarPendientes', views.modificarPendientes, name='modificarPendientes'),
+
 ]

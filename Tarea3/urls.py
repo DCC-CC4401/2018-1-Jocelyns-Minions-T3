@@ -19,6 +19,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('',include('inventario_CEI.urls')),
-    path('admin/', admin.site.urls),
+      path('landingAdmin/', views.landingAdmin, name='landingAdmin'),
+      path('landingAdminArtSpaces/', views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
+      path('landingAdminCalendar/', views.landingAdminCalendar, name='landingAdminCalendar'),
+      path('',include('inventario_CEI.urls')),
+      path('admin/', admin.site.urls),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

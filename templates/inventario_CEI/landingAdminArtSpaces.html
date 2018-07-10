@@ -31,33 +31,28 @@
                                 </tr>
                             </thead>
                             <tbody><!--Cuerpo de la tabla, colores= verde:#28a745, rojo :#dc3545, naranjo:#ffc107-->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Item 1</td>
-                                    <td style="color:#28a745">Disponible</td>
-                                    <td>
-                                        <span class="fas fa-pencil-alt"></span>
-                                        <span class="fas fa-trash-alt"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Item 2</td>
-                                    <td style="color:#dc3545">Perdido</td>
-                                    <td>
-                                        <span class="fas fa-pencil-alt"></span>
-                                        <span class="fas fa-trash-alt"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Item 3</td>
-                                    <td style="color:#ffc107">En Préstamo</td>
-                                    <td>
-                                        <span class="fas fa-pencil-alt"></span>
-                                        <span class="fas fa-trash-alt"></span>
-                                    </td>
-                                </tr>
+                             {% for art in list_art %}
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ art.nombre }}</td>
+                        {% if  art.estado == 'e' %}
+                             <td style="color:#ffc107">En Préstamo</td>
+                        {% elif art.estado == 'd' %}
+                             <td style="color:#28a745">Disponible</td>
+                        {% else %}
+                            <td style="color:#dc3545">Perdido</td>
+                        {% endif %}
+
+                        <td>
+                            <span class="fas fa-pencil-alt"></span>
+                            <span class="fas fa-trash-alt"></span>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+
                             </tbody>
                         </table>
                     </div>
