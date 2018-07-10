@@ -55,7 +55,7 @@ def landingNatSearch(request):
     return render(request, 'inventario_CEI/landingNatSSearch.html')
 
 def landingUserPlaceSearch(request):
-    prestamos=models.Prestamo_articulo.objects.all()
+    prestamos=models.Prestamo_articulo.objects.all()[0]
     context={'prestamos':prestamos}
     return render(request, 'inventario_CEI/landing-nat-place-search.html',context)
 
