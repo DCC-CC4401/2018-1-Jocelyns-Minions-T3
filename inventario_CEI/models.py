@@ -3,7 +3,8 @@ from django.urls import reverse  # Used to generate URLs by reversing the URL pa
 import uuid  # Required for unique  instances
 from datetime import date
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
-
+from django.core.exceptions import ValidationError
+from datetime import datetime
 
 class UserManager(BaseUserManager):
 
@@ -272,11 +273,20 @@ class Prestamo_articulo(models.Model):
     @staticmethod
     def borrar():
         try:
-            item = Prestamo_articulo.objects.get(pk=primarykey)
+            item = Prestamo_articulo.objects.get(pk=id)
         except Prestamo_articulo.DoesNotExist:
             return
         if item.estado=='p':
             item.delete()
+
+    def save(self, *args, **kwargs):
+        #MINIMO DE UNA HORA PARA RESERVAR
+        if   (self.hora_inicio-self.fecha_hora_peticion)<1 :
+            raise ValidationError
+        else:
+            super(Reserva_espacio, self).save(*args, **kwargs)
+
+
 
 
 class Reserva_espacio(models.Model):
@@ -289,9 +299,11 @@ class Reserva_espacio(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     espacio = models.ForeignKey('Espacio', on_delete=models.SET_NULL, null=True, blank=True)
     #blank=True porque el campo no es requerido en el formulario
-    fecha_devolucion = models.DateField(null=True)
     fecha_inicio = models.DateField(null=True)
-
+    hora_inicio = models.TimeField(null=True)
+    fecha_devolucion = models.DateField(null=True)
+    hora_devolucion = models.TimeField(null=True)
+    fecha_hora_peticion = models.DateTimeField(auto_now=True)
 
 
     ESTADO_RESERVA = (
@@ -311,4 +323,18 @@ class Reserva_espacio(models.Model):
 
     def get_absolute_url(self):
         return reverse('reserva-espacio-detalle', args=[str(self.id)])
+
+    def save(self, *args, **kwargs):
+        #MINIMO DE HORAS PARA RESERVAR
+        fecha_hora_inicio= datetime.combine(self.fecha_inicio, self.hora_inicio)
+        # MINIMO DE UNA HORA PARA RESERVAR
+        delta=fecha_hora_inicio - datetime.now()
+
+        if False: #ver delta menor a una hora
+            raise ValidationError
+        else:
+            super(Reserva_espacio, self).save(*args, **kwargs)
+
+
+
 

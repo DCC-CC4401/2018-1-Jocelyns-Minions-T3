@@ -15,9 +15,9 @@ class ReservaForm(ModelForm):
         fields = ['fecha_inicio','hora_inicio','fecha_devolucion','hora_devolucion']
         widgets = {
             'fecha_inicio': forms.SelectDateWidget(),
-            'hora_inicio': forms.TimeInput(),
+            'hora_inicio': forms.DateTimeField(),
             'fecha_devolucion': forms.SelectDateWidget(),
-            'hora_devolucion': forms.TimeInput(),
+            'hora_devolucion': forms.DateTimeField(),
         }
 
 class EditArticulo(ModelForm):

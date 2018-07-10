@@ -77,10 +77,10 @@ def landingAdmin(request):
     #return render(request, 'inventario_CEI/landingAdminUsers.html')
 
 def landingAdminCalendar(request,caso="inventario_CEI/landingAdminCalendarTodos.html"):
-    list_prestamos = Prestamo_articulo.objects.all().order_by('-fecha_inicio')
-    list_reserva =  Reserva_espacio.objects.all().order_by('-fecha_inicio')
+    list_prestamos = Prestamo_articulo.objects.all().order_by('-fecha_hora_peticion')
+    list_reserva =  Reserva_espacio.objects.all().order_by('-fecha_hora_peticion')
     latest = list(list_prestamos) + list(list_reserva)
-    latest_sorted = sorted(latest, key=lambda x: x.fecha_inicio, reverse=True)
+    latest_sorted = sorted(latest, key=lambda x: x.fecha_hora_peticion, reverse=True)
 
 
     return render(request,
@@ -132,7 +132,7 @@ def modificarPedidos(request):
         elif 'borrar' in request.POST:
             if request.POST.getlist('check[]'):
                 for id in request.POST.getlist('check[]'):
-                    if item.articulo.nombre:
+                    if id.articulo.nombre:
                         item = Prestamo_articulo.objects.get(pk=id)
                     else:
                         item = Reserva_espacio.objects.get(pk=id)
