@@ -8,4 +8,7 @@ urlpatterns = [
     path('base/', views.base, name='base'),
     path('articulos/<uuid:id>/', views.artProfile, name='artProfile'),
     path('user/', views.usrProfile, name='usrProfile'),
+    path('landingAdmin/', views.landingAdmin, name='landingAdmin'),
+    path('landingAdminArtSpaces/', views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
+    path('landingAdminCalendar/', views.landingAdminCalendar, name='landingAdminCalendar'),
 ]

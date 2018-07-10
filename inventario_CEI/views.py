@@ -47,3 +47,27 @@ def usrProfile(request):
     articulos=models.Articulo.objects.all()
     contexto={'prestamos':prestamos, 'articulos':articulos}
     return render(request, 'inventario_CEI/usrProfile.html',contexto)
+
+def landingNatBase(request):
+    return render(request, 'inventario_CEI/landing-nat-base.html')
+
+def landingNatSearch(request):
+    return render(request, 'inventario_CEI/landingNatSSearch.html')
+
+def landingPlaceSearch(request):
+    return render(request, 'inventario_CEI/landing-nat-place-search.html')
+
+def landingAdminBase(request):
+    return render(request, 'inventario_CEI/landingAdminBase.html')
+
+def landingNat(request):
+    return render(request,'inventario_CEI/landing-nat-advanced-search.html')
+
+def landingAdmin(request):
+    return render(request, 'inventario_CEI/landingAdminUsers.html')
+
+def landingAdminCalendar(request):
+    return render(request, 'inventario_CEI/landingAdminCalendar.html')
+
+def landingAdminArtSpaces(request):
+    return render(request, 'inventario_CEI/landingAdminArtSpaces.html')
