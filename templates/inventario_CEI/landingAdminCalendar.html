@@ -21,7 +21,7 @@
 
     </div>
     <div class="row justify-content-between">
-        <form style="width: 49%">
+        <form style="width: 49%"  action="modificarPendientes" method="POST">
         <div class="col"> <!--lista de pendientes-->
 
                 <div class="row justify-content-between">
@@ -29,8 +29,8 @@
                         <h4>Pendientes</h4>
                     </div>
                     <div class="col-3">
-                        <button type="submit" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
-                        <button type="submit" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+                        <button type="submit" name="aceptar" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                        <button type="submit" name="rechazar" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
                     </div>
                 </div>
                 <div class="row border-top"><!--tabla de pendentes-->
@@ -47,36 +47,56 @@
                         </thead>
                         <tbody>
 
+                            {% csrf_token %}
+                        {% for peticion in latest_sorted %}
+                             {% if peticion.articulo.nombre and  peticion.estado == 'p' %}
 
-                            <tr>
-                                <td> <input type="checkbox"></td>
-                                <td>34</td>
-                                <td>Quicho</td>
-                                <td>Jocelyn Simmonds</td>
-                                <td>27/04/2018 13:00</td>
-                                <td>prestamo</td>
+                                <tr>
+                                    <td> <label><input type="checkbox" name= "check[]" value={{peticion.id}}></label> </td>
+                                    <td> {{ peticion.id }}</td>
+                                    <td>{{ peticion.articulo.nombre }}</td>
+                                    <td>{{ peticion.usuario.get_nombre_simple }}</td>
+                                    <td>{{ peticion.fecha_devolucion }}</td>
+                                    <td>{{ peticion.fecha_inicio}}</td>
 
-                            </tr>
+                                </tr>
+                                 {% elif  peticion.estado == 'p' %}
+                                 <tr>
+                                  <td> <label><input type="checkbox" name= "check[]" value={{peticion.id}}></label> </td>
+                                    <td> {{ peticion.id }}</td>
+                                    <td>{{ peticion.espacio.nombre }}</td>
+                                    <td>{{ peticion.usuario.get_nombre_simple }}</td>
+                                    <td>{{ peticion.fecha_devolucion }}</td>
+                                    <td>{{ peticion.fecha_inicio }}</td>
+                                 </tr>
+
+                            {% endif %}
+                            {% endfor %}
+
                         </tbody>
                     </table>
                 </div>
 
         </div>
         </form>
-        <form style="width: 49%">
-            <div class="col"> <!--lista de pendientes-->
+
+
+        <form style="width: 49%" action="borrarPedidos" method="POST">
+                <div class="col"> <!--lista de pedidos-->
 
                     <div class="row justify-content-between">
                         <div class="col-3">
                             <h4>Pedidos</h4>
                         </div>
+
                         <div class="col-8">
                             <a href="#">Todos</a>
                             <a href="#">Vigentes</a>
                             <a href="#">Caducados</a>
                             <a href="#">Perdidos</a>
-                            <button type="submit" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
-                            <button type="submit" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+
+                            <button type="submit"  name="borrar"  style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                            <button type="submit"  name="cambiar" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
                         </div>
                     </div>
                     <div id="refresh-this-div" class="row border-top"><!--tabla de pendentes-->
@@ -92,9 +112,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                {% csrf_token %}
                             {% for prestamo in list_prestamos %}
                                 <tr>
-                                    <td> <input type="checkbox"> </td>
+                                    <td> <label><input type="checkbox" name= "check[]" value={{prestamo.id}}></label> </td>
                                     <td> {{ prestamo.id }}</td>
                                     <td>{{ prestamo.articulo.nombre }}</td>
                                     <td>{{ prestamo.usuario.get_nombre_simple }}</td>
@@ -109,9 +131,11 @@
                             {% endfor %}
 
 
+
                             </tbody>
                         </table>
                     </div>
+
 
             </div>
             </form>

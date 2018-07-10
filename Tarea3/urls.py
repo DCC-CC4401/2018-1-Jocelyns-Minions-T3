@@ -16,21 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from inventario_CEI import views
-
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('landingAdmin/', views.landingAdmin, name='landingAdmin'),
     path('landingAdminArtSpaces/', views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
     path('landingAdminCalendar/', views.landingAdminCalendar, name='landingAdminCalendar'),
-    path('', views.base, name='base'),
+
+
     path('base/',include('inventario_CEI.urls')),
     path('artProfile/',include('inventario_CEI.urls')),
     path('landingNat/',include('inventario_CEI.urls')),
     path('landingAdmin/', include('inventario_CEI.urls')),
 
-    path('',include('inventario_CEI.urls')),
+    path('landingAdminCalendar/',include('inventario_CEI.urls')),
 
     path('admin/', admin.site.urls),
+    path('', views.base, name='base'),
     #path('',views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
     #url(r'^$', views.homepage, name="homepage"),
     #url(r'^admin/', admin.site.urls),

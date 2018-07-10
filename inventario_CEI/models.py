@@ -201,9 +201,6 @@ class Espacio(models.Model):
 
 
 
-
-
-
 class Prestamo_articulo(models.Model):
 
     """
