@@ -1,0 +1,100 @@
+{% extends 'inventario_CEI/landingAdminBase.html' %}
+{% load static %}
+{% block lists %}
+    <div class="row pt-5">
+        <div class="col-1 m-0">
+            <div class="row pb-5 ">
+                <a href="/landingAdmin" class="dark" style="cursor: pointer;">
+                <span class="fas fa-user" style="font-size:60px;"></span></a>
+            </div>
+
+            <div class="row pb-5 pt-2">
+                <span class="fas fa-cart-plus" style="font-size:50px;color:#28a745"></span>
+            </div>
+            <div class="row pb-5 pt-2">
+                        <a href="/landingAdminCalendar" class="dark" style="cursor: pointer;">
+                    <span class="far fa-clock" style="font-size:60px;"></span></a>
+            </div>
+        </div>
+        <div class="col-11 pl-2"> <!--listas van aca-->
+            <div class="row justify-content-around">
+                <div class="col-5 "><!--lista de articulos-->
+                    <h3>Artículos</h3>
+                    <div class="row border-top">
+                        <table class="table-striped" style="width:100%"> <!--tabla-->
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Producto</td>
+                                    <td>Estado</td>
+                                    <td><span class="fas fa-plus-circle" style="color:#28a745"></span></td>
+                                </tr>
+                            </thead>
+                            <tbody><!--Cuerpo de la tabla, colores= verde:#28a745, rojo :#dc3545, naranjo:#ffc107-->
+                             {% for art in list_art %}
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ art.nombre }}</td>
+                        {% if  art.estado == 'e' %}
+                             <td style="color:#ffc107">En Préstamo</td>
+                        {% elif art.estado == 'd' %}
+                             <td style="color:#28a745">Disponible</td>
+                        {% else %}
+                            <td style="color:#dc3545">Perdido</td>
+                        {% endif %}
+
+                        <td>
+                            <span class="fas fa-pencil-alt"></span>
+                            <span class="fas fa-trash-alt"></span>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-5 "><!--lista de esoacios-->
+                    <h3>Espacios</h3>
+                    <div class="row border-top">
+                        <table class="table-striped " style="width:100%"> <!--tabla-->
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Espacio</td>
+                                    <td>Estado</td>
+                                    <td><span class="fas fa-plus-circle" style="color:#28a745"></span></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Quincho</td>
+                                    <td style="color:#28a745">Disponible</td>
+                                    <td>
+                                        <span class="fas fa-pencil-alt"></span>
+                                        <span class="fas fa-trash-alt"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Sala 1</td>
+                                    <td style="color:#ffc107">En Préstamo</td>
+                                    <td>
+                                        <span class="fas fa-pencil-alt"></span>
+                                        <span class="fas fa-trash-alt"></span>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
