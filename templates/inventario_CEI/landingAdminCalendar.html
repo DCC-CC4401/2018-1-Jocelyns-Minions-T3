@@ -80,20 +80,19 @@
         </div>
         </form>
 
-
-        <form style="width: 49%" action="borrarPedidos" method="POST">
+        <form style="width: 49%" action="modificarPedidos" method="POST">
                 <div class="col"> <!--lista de pedidos-->
 
                     <div class="row justify-content-between">
-                        <div class="col-3">
+                        <div class="col-1">
                             <h4>Pedidos</h4>
                         </div>
 
-                        <div class="col-8">
-                            <a href="#">Todos</a>
-                            <a href="#">Vigentes</a>
-                            <a href="#">Caducados</a>
-                            <a href="#">Perdidos</a>
+                        <div class="col-10">
+                            <button type="submit" name="todos" style="background-color:white;border:none">Todos</button>
+                            <button type="submit" name="vigentes" style="background-color:white;border:none">Vigentes</button>
+                            <button type="submit" name="caducados" style="background-color:white;border:none">Caducados</button>
+                            <button type="submit" name="perdidos" style="background-color:white;border:none">Perdidos</button>
 
                             <button type="submit"  name="borrar"  style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
                             <button type="submit"  name="cambiar" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
@@ -115,19 +114,8 @@
 
                                 {% csrf_token %}
                             {% for prestamo in list_prestamos %}
-                                <tr>
-                                    <td> <label><input type="checkbox" name= "check[]" value={{prestamo.id}}></label> </td>
-                                    <td> {{ prestamo.id }}</td>
-                                    <td>{{ prestamo.articulo.nombre }}</td>
-                                    <td>{{ prestamo.usuario.get_nombre_simple }}</td>
-                                    <td>{{ prestamo.fecha_inicio }}</td>
-                                    <td>{{ prestamo.get_estado_display }}</td>
-
-                                    <td>
-                                        <span class="fas fa-pencil-alt"></span>
-                                        <span class="fas fa-trash-alt"></span>
-                                    </td>
-                                </tr>
+                                 {% block casos %}
+                                {%  endblock %}
                             {% endfor %}
 
 
@@ -139,6 +127,8 @@
 
             </div>
             </form>
+
+
 
     </div>
 {% endblock %}

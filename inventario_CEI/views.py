@@ -31,7 +31,7 @@ def landingAdmin(request):
     )
     #return render(request, 'inventario_CEI/landingAdminUsers.html')
 
-def landingAdminCalendar(request):
+def landingAdminCalendar(request,caso="inventario_CEI/landingAdminCalendarTodos.html"):
     list_prestamos = Prestamo_articulo.objects.all().order_by('-fecha_inicio')
     list_reserva =  Reserva_espacio.objects.all().order_by('-fecha_inicio')
     latest = list(list_prestamos) + list(list_reserva)
@@ -39,7 +39,7 @@ def landingAdminCalendar(request):
 
 
     return render(request,
-                  'inventario_CEI/landingAdminCalendar.html',
+                  caso,
                   context={'list_prestamos': list_prestamos, 'list_reserva': list_reserva, 'latest_sorted' :latest_sorted },
                   )
 
@@ -73,7 +73,42 @@ def modificarPendientes(request):
     return landingAdminCalendar(request)
 
 
-def borrarPedidos(request):
+def modificarPedidos(request):
+
+    if request.method == 'POST':
+        if 'vigentes' in request.POST:
+            return landingAdminCalendar(request, 'inventario_CEI/landingAdminCalendarVigentes.html')
+        elif 'caducados' in request.POST:
+            return landingAdminCalendar(request, 'inventario_CEI/landingAdminCalendarCaducados.html')
+        elif 'todos' in request.POST:
+            return landingAdminCalendar(request)
+        elif 'perdidos' in request.POST:
+            return landingAdminCalendar(request, 'inventario_CEI/landingAdminCalendarPerdidos.html')
+        elif 'borrar' in request.POST:
+            if request.POST.getlist('check[]'):
+                for id in request.POST.getlist('check[]'):
+                    if item.articulo.nombre:
+                        item = Prestamo_articulo.objects.get(pk=id)
+                    else:
+                        item = Reserva_espacio.objects.get(pk=id)
+                    item.delete()
+                    return landingAdminCalendar(request)
+
+
+
+
+    elif 'rechazar' in request.POST:
+        if request.method == 'POST':
+            if request.POST.getlist('check[]'):
+                for id in request.POST.getlist('check[]'):
+                    if item.articulo.nombre:
+                        item = Prestamo_articulo.objects.get(pk=id)
+                    else:
+                        item = Reserva_espacio.objects.get(pk=id)
+                    item.estado = "r"
+                    item.save(update_fields=['estado'])
+
+
 
 
     #if 'list' in request.POST:
