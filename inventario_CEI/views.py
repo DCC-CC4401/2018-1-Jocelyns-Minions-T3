@@ -54,8 +54,10 @@ def landingNatBase(request):
 def landingNatSearch(request):
     return render(request, 'inventario_CEI/landingNatSSearch.html')
 
-def landingPlaceSearch(request):
-    return render(request, 'inventario_CEI/landing-nat-place-search.html')
+def landingUserPlaceSearch(request):
+    prestamos=models.Prestamo_articulo.objects.all()
+    context={'prestamos':prestamos}
+    return render(request, 'inventario_CEI/landing-nat-place-search.html',context)
 
 def landingAdminBase(request):
     return render(request, 'inventario_CEI/landingAdminBase.html')

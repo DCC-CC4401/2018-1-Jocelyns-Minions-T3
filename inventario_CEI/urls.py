@@ -11,4 +11,7 @@ urlpatterns = [
     path('landingAdmin/', views.landingAdmin, name='landingAdmin'),
     path('landingAdminArtSpaces/', views.landingAdminArtSpaces, name='landingAdminArtSpaces'),
     path('landingAdminCalendar/', views.landingAdminCalendar, name='landingAdminCalendar'),
+    path('landingUser/',views.landingNat, name='landingUser'),
+    path('landingUser/Asearch/',views.landingNatSearch, name='landingUser'),
+    path('landingUserPlaceSearch/', views.landingUserPlaceSearch, name='UserPlaceSearch'),
 ]
