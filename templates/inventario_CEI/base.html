@@ -40,7 +40,7 @@
     <header>
         <div class="container-fluid  bg-light ">
             <div class="navbar navbar-expand-xl navbar-light bg-light justify-content-between">
-                <a class="navbar-brand text-white" href="#">
+                <a class="navbar-brand text-white">
                     <img src="{% static "img/cei_logo.png" %}" alt="logo" width="70" height="70"/>
                 </a>
                 <div class="row align-items-center">
@@ -65,9 +65,11 @@
                             {% endif %}
                         </div>
                     </div>
+                    <a href="/user">
                     <div class="col-sm">
                         <img src="{% static "img/user.png" %}" alt="user" width="70" height="60"/>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>

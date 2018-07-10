@@ -1,0 +1,57 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container bs-docs-container">
+        <div class="row  m-4 justify-content-around" style="height:100px">
+            <div class="col-3 align-self-center ">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success text-white">Artículos</button>
+                    <button type="button" class="btn btn-light">Espacios</button>
+                </div>
+            </div>
+        </div>
+
+        <form method="GET" action="{% url 'search' %}">
+            <div class="form-group m-0">
+                <div class="row">
+                    <div class="col-10 pr-0 pl-0">
+                        <input name="nombre" type="text" class="form-control" style="width:100%" placeholder="Buscar..." value="{{request.GET.q}}">
+                    </div>
+                    <div class="col-2 pl-0 pr-0">
+                        <button type="submit" class="btn" style="width:100% ">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {% if resultados %}
+        <h4>{{response}}</h4>
+            <div class="row pt-2 border-top ">
+                {% for item in resultados %}
+                <div class="col pl-1 pt-1 pr-1 border">
+                    <div class="thumbnail ">
+                        <a href="/articulos/{{item.id}}/">
+                            <img src="{{item.image.url}}" style="width:100%" class=”img-responsive”>
+                            <div class="caption">
+                                {{item.nombre}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        <h4>No se encontraron resultados...</h4>
+        {% endif %}
+
+        <div class="row justify-content-end">
+            <div class="col-2">
+                <a href="#">
+                    Búsqueda Avanzada
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

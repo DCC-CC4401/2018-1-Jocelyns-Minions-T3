@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from inventario_CEI import models
 from .forms import ReservaForm, EditArticulo, BorrarPrestamos
+from django.db.models import Q, Count
+
 
 # Create your views here.
 @login_required
@@ -47,3 +49,38 @@ def usrProfile(request):
     articulos=models.Articulo.objects.all()
     contexto={'prestamos':prestamos, 'articulos':articulos}
     return render(request, 'inventario_CEI/usrProfile.html',contexto)
+
+#def landingNatBase(request):
+ #   return render(request, 'inventario_CEI/landing-nat-base.html')
+
+def landingHome(request):
+    template= 'inventario_CEI/landing_home.html'
+    results = models.Prestamo_articulo.objects.all().annotate(itemcount=Count('articulo')).order_by('-itemcount').values_list('articulo').distinct()[:4]
+    ids=[]
+    for item in results:
+        for j in item:
+            ids.append(j)
+    articulos = models.Articulo.objects.filter(pk__in=ids)
+    hot_search='Top Pedidos'
+    context={'resultados':articulos, 'response':hot_search}
+    return render(request, template, context)
+
+def Search(request):
+    query = request.GET.get('nombre')
+    ids=[]
+    if query:
+        results = models.Prestamo_articulo.objects.filter(Q(articulo__nombre__icontains=query)).values_list('articulo').distinct()
+        for item in results:
+            for j in item:
+                if not j in ids:
+                    ids.append(j)
+    else:
+        return redirect('/home')
+    hot_search = 'Resultados'
+    articulos = models.Articulo.objects.filter(pk__in=ids)
+    template = 'inventario_CEI/landing_home.html'
+    context = {'query': query, 'resultados':articulos,'response':hot_search}
+    return render(request, template, context)
+
+#def landingAdvSearch(request):
+    #return render(request,'inventario_CEI/landing-nat-advanced-search.html')

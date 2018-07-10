@@ -44,9 +44,11 @@
                 </div>
             </div>
             <div class="col-6 pl-4"  >
+                <a href="/home">
                 <div class='inner rounded' id="centrado" >
                     <h1>Pide Tu Artículo</h1>
                 </div>
+                </a>
             </div>
         </div>
 
@@ -81,6 +83,8 @@
                     <tr>
                         {% if prestamo.estado == 'p' %}
                         <td> <label><input type="checkbox" name="check[]" value={{prestamo.id}}> </label></td>
+                        {% else %}
+                        <td> <label><input type="checkbox"  disabled="disabled"> </label></td>
                         {% endif %}
                         <td> {{prestamo.articulo}}</td>
                         {% if articulos %}

@@ -147,7 +147,7 @@ class Articulo(models.Model):
     ESTADO_ARTICULO = (
        ('d', 'Disponible'),
        ('o', 'Ocupado'),
-       ('rp','En reparacion'),
+       ('r','En reparacion'),
        ('p', 'Perdido'),
 
     )
@@ -190,6 +190,7 @@ class Prestamo_articulo(models.Model):
     hora_devolucion = models.TimeField(null=True)
     fecha_hora_peticion= models.DateTimeField(auto_now=True)
     articulo = models.ForeignKey('Articulo', on_delete=models.SET_NULL, null=True, blank=True)
+
     #@property  allows to access the computed value of combined_name like an attribute
     @property
     def is_overdue(self):
@@ -225,12 +226,3 @@ class Prestamo_articulo(models.Model):
 
     def get_absolute_url(self):
         return reverse('prestamo-articulo-detalle', args=[str(self.id)])
-
-    @staticmethod
-    def borrar():
-        try:
-            item = Prestamo_articulo.objects.get(pk=primarykey)
-        except Prestamo_articulo.DoesNotExist:
-            return
-        if item.estado=='p':
-            item.delete()
