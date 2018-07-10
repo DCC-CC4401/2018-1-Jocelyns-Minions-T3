@@ -328,7 +328,7 @@ class Reserva_espacio(models.Model):
         #MINIMO DE HORAS PARA RESERVAR
         fecha_hora_inicio= datetime.combine(self.fecha_inicio, self.hora_inicio)
         # MINIMO DE UNA HORA PARA RESERVAR
-       git chec
+        delta=fecha_hora_inicio - datetime.now()
 
         if False: #ver delta menor a una hora
             raise ValidationError
