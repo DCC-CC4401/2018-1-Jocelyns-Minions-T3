@@ -47,7 +47,7 @@ class UserChangeForm(forms.ModelForm):
         fields = ('email', 'password', 'rut', 'nombres', 'apellidos', 'puede_reservar', 'is_admin')
 
     def clean_password(self):
-        # No entiendo bien que hace esto, pero es requerido por DjangoAdmin [Salu2 Gaspar]
+        # No entiendo bien que hace esto, pero es requerido por DjangoAdmin [Salu2 Gaspar] - oki doki [salu2 marcelo]
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
