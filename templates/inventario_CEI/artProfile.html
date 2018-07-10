@@ -1,0 +1,66 @@
+{% extends 'inventario_CEI/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container bs-docs-container">
+        <div class="row pt-5 align-items-end">
+            <div class="col-8">
+                <h1>{{articulo}} <span class="badge badge-pill badge-info">{{articulo.get_estado}}</span></h1>
+            </div>
+            <div class="col-4">
+                {% if not user.is_staff %}
+                <h4>Solicitar reserva</h4>
+                {% else %}
+                <h4>Editar Datos</h4>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 pt-4 pr-4">
+                {% if articulo.image %}
+                <img src="{{articulo.image.url}}" alt="objeto" style="width:80%"/>
+                {% else %}
+                <img src="{% static "img/img.png" %}" alt="objeto" style="width:100%"/>
+                {% endif %}
+                <div style="border-style: dashed; margin: 25px; border-color: darkgray">{{articulo.descripcion}}</div>
+            </div>
+
+            <div class="col-4 pt-4">
+                <div style="height:300px; width:500px;border-style:solid;border-color:gray;display: flex; justify-content: space-around; overflow: hidden; text-overflow: ellipsis;">
+                    {% if not user.is_staff %}
+                    {% if user.get_permiso %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="Aceptar" align="middle" />
+                        </form>
+                    {% else %}
+                        <a> Usted no tiene permiso para reservar </a>
+                    {% endif %}
+                    {% else %}
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form2.as_ul }}
+                            <input type="submit" value="Aceptar" align="middle" />
+                        </form>
+                    {% endif %}
+                </div>
+                <div style="height:50px; margin-top:10px">
+                    <h4>Historial de Reservas</h4>
+                </div>
+
+                <div style="height:100px;border-style:solid;border-color:gray">
+                    {% if prestamos %}
+                    {% for pres in prestamos %}
+                    {% if pres.estado == 'a' or pres.estado == 't' or pres.estado == 'c' %}
+                    <ul>
+                        <li>{{pres.fecha_devolucion}} || {{pres.hora_devolucion}}</li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

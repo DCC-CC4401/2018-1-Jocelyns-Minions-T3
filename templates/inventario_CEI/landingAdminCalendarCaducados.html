@@ -1,0 +1,21 @@
+{% extends 'inventario_CEI/landingAdminCalendar.html' %}
+{% load static %}
+{% block casos %}
+
+    {% if prestamo.estado == 'c' %}
+        <tr>
+            <td> <label><input type="checkbox" name= "check[]" value={{prestamo.id}}></label> </td>
+            <td> {{ prestamo.id }}</td>
+            <td>{{ prestamo.articulo.nombre }}</td>
+            <td>{{ prestamo.usuario.get_nombre_simple }}</td>
+            <td>{{ prestamo.fecha_inicio }}</td>
+            <td>{{ prestamo.get_estado_display }}</td>
+
+            <td>
+                <span class="fas fa-pencil-alt"></span>
+                <span class="fas fa-trash-alt"></span>
+            </td>
+        </tr>
+    {% endif %}
+
+{% endblock %}

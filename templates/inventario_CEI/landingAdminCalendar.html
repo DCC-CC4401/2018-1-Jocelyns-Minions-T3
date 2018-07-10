@@ -1,0 +1,134 @@
+{% extends 'inventario_CEI/landingAdminBase.html' %}
+{% load static %}
+{% block lists %}
+    <div class="row pt-5">
+        <div class="col-1 m-0">
+              <div class="row pb-5 ">
+                <a href="/landingAdmin" class="dark" style="cursor: pointer;">
+                <span class="fas fa-user" style="font-size:60px;"></span></a>
+            </div>
+             <div class="row pb-5 pt-2">
+                <a href="/landingAdminArtSpaces" class="dark" style="cursor: pointer;">
+                    <span class="fas fa-cart-plus" style="font-size:50px;"></span></a>
+            </div>
+            <div class="row pb-5 pt-2">
+                <span class="far fa-clock" style="font-size:60px;color:#28a745"></span>
+            </div>
+        </div>
+        <div class="col-11"><!--calendario aca-->
+            <div id="calendar"></div>
+        </div>
+
+    </div>
+    <div class="row justify-content-between">
+        <form style="width: 49%"  action="modificarPendientes" method="POST">
+        <div class="col"> <!--lista de pendientes-->
+
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <h4>Pendientes</h4>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" name="aceptar" style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                        <button type="submit" name="rechazar" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+                    </div>
+                </div>
+                <div class="row border-top"><!--tabla de pendentes-->
+                    <table class="table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>ID</td>
+                                <td>Artículo</td>
+                                <td>Usuario</td>
+                                <td>Fecha Préstamo</td>
+                                <td>Fecha Solicitud</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% csrf_token %}
+                        {% for peticion in latest_sorted %}
+                             {% if peticion.articulo.nombre and  peticion.estado == 'p' %}
+
+                                <tr>
+                                    <td> <label><input type="checkbox" name= "check[]" value={{peticion.id}}></label> </td>
+                                    <td> {{ peticion.id }}</td>
+                                    <td>{{ peticion.articulo.nombre }}</td>
+                                    <td>{{ peticion.usuario.get_nombre_simple }}</td>
+                                    <td>{{ peticion.fecha_devolucion }}</td>
+                                    <td>{{ peticion.fecha_inicio}}</td>
+
+                                </tr>
+                                 {% elif  peticion.estado == 'p' %}
+                                 <tr>
+                                  <td> <label><input type="checkbox" name= "check[]" value={{peticion.id}}></label> </td>
+                                    <td> {{ peticion.id }}</td>
+                                    <td>{{ peticion.espacio.nombre }}</td>
+                                    <td>{{ peticion.usuario.get_nombre_simple }}</td>
+                                    <td>{{ peticion.fecha_devolucion }}</td>
+                                    <td>{{ peticion.fecha_inicio }}</td>
+                                 </tr>
+
+                            {% endif %}
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+        </div>
+        </form>
+
+        <form style="width: 49%" action="modificarPedidos" method="POST">
+                <div class="col"> <!--lista de pedidos-->
+
+                    <div class="row justify-content-between">
+                        <div class="col-1">
+                            <h4>Pedidos</h4>
+                        </div>
+
+                        <div class="col-10">
+                            <button type="submit" name="todos" style="background-color:white;border:none">Todos</button>
+                            <button type="submit" name="vigentes" style="background-color:white;border:none">Vigentes</button>
+                            <button type="submit" name="caducados" style="background-color:white;border:none">Caducados</button>
+                            <button type="submit" name="perdidos" style="background-color:white;border:none">Perdidos</button>
+
+                            <button type="submit"  name="borrar"  style="background-color:white;border:none"><span class=" fas fa-check-circle" style="color:#28a745"></span></button>
+                            <button type="submit"  name="cambiar" style="background-color:white;border:none"><span class=" fas fa-times-circle" style="color:#dc3545"></span></button>
+                        </div>
+                    </div>
+                    <div id="refresh-this-div" class="row border-top"><!--tabla de pendentes-->
+                        <table class="table-bordered" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>ID</td>
+                                    <td>Artículo</td>
+                                    <td>Usuario</td>
+                                    <td>Fecha Préstamo</td>
+                                    <td>Estado</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% csrf_token %}
+                            {% for prestamo in list_prestamos %}
+                                 {% block casos %}
+                                {%  endblock %}
+                            {% endfor %}
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+            </div>
+            </form>
+
+
+
+    </div>
+{% endblock %}
